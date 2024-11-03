@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha Página</title>
+    <style>
+        #conteudo {
+            display: none; /* Começa oculto */
+        }
+        #mensagem-erro {
+            display: none; /* Apenas será mostrado se houver bypass */
+            color: red;
+            text-align: center;
+            font-size: 1.5em;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="mensagem-erro">Oh, looks like you bypassed the shortener, can you please go back and go through the shortener? That's my only way to earn something <:]</div>
+    <div id="conteudo">
+        <!-- Conteúdo real da página -->
+        <h1>Bem-vindo!</h1>
+        <p>Este é o conteúdo da página, visível apenas para acessos diretos.</p>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const referrer = document.referrer;
+            const encurtadores = ["bit.ly", "tinyurl.com", "goo.gl", "is.gd"]; // Liste encurtadores conhecidos
+
+            if (encurtadores.some(encurtador => referrer.includes(encurtador))) {
+                // Caso detecte um encurtador, exibe a mensagem de erro
+                document.getElementById("mensagem-erro").style.display = "block";
+            } else {
+                // Exibe o conteúdo da página
+                document.getElementById("conteudo").style.display = "block";
+            }
+        });
+    </script>
+</body>
+</html>
